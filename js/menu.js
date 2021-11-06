@@ -1,7 +1,12 @@
 const restorant = 'food-band'
 
 const renderItems = (data) => {
-  console.log(data)
+  data.forEach(element => {
+    console.log(element);
+    // Object.entries(element).forEach((elem) => {
+    //   console.log(elem);
+    // })
+  });
 }
 
 fetch(`https://practice-7d984-default-rtdb.firebaseio.com/db/${restorant}.json`)
