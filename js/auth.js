@@ -1,3 +1,4 @@
+// В класс бы записать всё это...
 const buttonAuth = document.querySelector('.button-auth');
 const modelAuth = document.querySelector('.modal-auth');
 const modalClose = document.querySelector('.close-auth');
@@ -6,9 +7,23 @@ const inputLogin = document.getElementById('login');
 const inputPassword = document.getElementById('password');
 const buttonOut = document.querySelector('.button-out');
 const userName = document.querySelector('.user-name');
+const labelAuth = document.querySelector('.label-auth');
 
-
+const validateLogin = loginValue => /^[0-9a-zA-z_\d]{1,12}$/.test(loginValue); // валидация
 const login = (user) => {
+  if (!validateLogin(user.login)) {
+    var title = document.createElement('div')
+    title.className = 'desc';
+    title.innerHTML = 'Введите логин';
+    labelAuth.before(title); // дублируется div. Нужна какая-то проверка...
+    return false;
+  } else {
+    hideModal(user);
+  };
+  
+}
+
+const hideModal = (user) => {
   buttonAuth.style.display = 'none';
 
   buttonOut.style.display = 'flex';
@@ -17,6 +32,7 @@ const login = (user) => {
   userName.textContent = user.login;
   modelAuth.style.display = 'none';
 }
+
 const logout = () => {
   buttonAuth.style.display = 'flex';
 
@@ -25,11 +41,12 @@ const logout = () => {
   userName.textContent = '';
 
   localStorage.removeItem('user');
-
 }
+
 buttonOut.addEventListener('click', () => {
   logout();
 })
+
 modalClose.addEventListener('click', () => {
   modelAuth.style.display = 'none';
 })
