@@ -8,6 +8,7 @@ const auth = () => {
   const inputPassword = document.getElementById('password');
   const buttonOut = document.querySelector('.button-out');
   const userName = document.querySelector('.user-name');
+  const buttonCart = document.querySelector('.button-cart');
 
 
   const nameinput = document.forms.main.nameInput;
@@ -18,6 +19,9 @@ const auth = () => {
     buttonOut.style.display = 'none';
     userName.style.display = 'none';
     userName.textContent = '';
+
+    // button cart
+    buttonCart.style.display = 'none';
 
     localStorage.removeItem('user');
   }
@@ -79,6 +83,8 @@ const auth = () => {
 
     buttonOut.style.display = 'flex';
     userName.style.display = 'flex';
+    // button 
+    buttonCart.style.display = 'flex';
 
     userName.textContent = user.login;
     modelAuth.style.display = 'none';
